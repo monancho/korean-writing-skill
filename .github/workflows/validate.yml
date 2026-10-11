@@ -21,6 +21,6 @@ jobs:
         run: python -X utf8 scripts/check_package.py
       - name: 손상 감지·ZIP 무결성 확인
         run: python -X utf8 -m unittest discover -s tests -v
-      - name: 배포 후보 생성
+      - name: MIT 고지를 포함한 릴리스 ZIP 생성
         run: python -X utf8 scripts/build_package.py
 

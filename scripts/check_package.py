@@ -65,6 +65,18 @@ def check(root: Path) -> list[str]:
         errors.append("스킬명과 폴더명이 일치하지 않습니다.")
     if not re.search(r"(?m)^description: \S", text):
         errors.append("호출 설명이 없습니다.")
+    if not re.search(r"(?m)^license: MIT$", text):
+        errors.append("릴리스 라이선스 표기가 MIT와 일치하지 않습니다.")
+    license_file = root / "LICENSE"
+    if not license_file.is_file():
+        errors.append("배포용 LICENSE가 없습니다.")
+    else:
+        try:
+            license_text = license_file.read_text(encoding="utf-8")
+            if "MIT License" not in license_text or "Copyright (c) 2026 monancho" not in license_text:
+                errors.append("MIT 저작권·허가 고지를 확인할 수 없습니다.")
+        except UnicodeError:
+            errors.append("LICENSE UTF-8 읽기 실패")
     if re.search(r"\bTODO\b|\[TODO", text):
         errors.append("핵심 지침에 미완성 표시가 있습니다.")
     return errors

@@ -2,7 +2,9 @@
 
 한국어 글·업무 문서·Slack 문구의 작성, 수정, 검토를 돕는 지침형 Agent Skill이다. 사실·수치·조건·부정·확신의 정도와 사용자 의도를 보존하는 것을 우선한다.
 
-현재 0.1.0 비공개 구현 후보다. 한 진입점과 다섯 조건부 참조를 구현했고 기본 구성 확인을 수행했다. 공개 여부와 배포 라이선스는 미결이며 정식 릴리스는 아니다.
+첫 정식 판본은 **v0.1.0**이다. 한 진입점과 다섯 조건부 참조를 구현했다. 자체 스킬·문서·코드·가상 예시는 [MIT 라이선스](LICENSE)로 제공한다.
+
+[정식 릴리스와 ZIP 다운로드](https://github.com/monancho/korean-writing-skill/releases/tag/v0.1.0)에서 `korean-writing-0.1.0.zip`과 `SHA256SUMS.txt`를 받는다. ZIP은 스킬 파일 7개·MIT 고지·파일별 해시 manifest를 포함한다.
 
 ## 사용하기
 
@@ -20,7 +22,7 @@ $korean-writing으로 이 Slack 문구를 공손하고 간결하게 다듬어 �
 - [설계 결정](docs/adr/0001-entrypoint.md) · [구현 계획](docs/implementation-plan.md) · [구현 기록](docs/implementation-record.md)
 - [요구 추적](docs/requirements-traceability.md) · [검증 보고와 실제 관찰](docs/verification-report.md)
 - [연구·공개 스킬·템플릿 조사](research/README.md) · [출처/자산 범위](docs/source-and-assets.md)
-- [공개 준비와 라이선스 선택안](docs/release-readiness.md) · [변경 기록](CHANGELOG.md) · [유지관리](CONTRIBUTING.md)
+- [공개 범위와 릴리스 인계](docs/release-readiness.md) · [공개 점검과 릴리스 검증](docs/publication-review.md) · [변경 기록](CHANGELOG.md) · [유지관리](CONTRIBUTING.md)
 
 기본 구성·UTF-8·참조와 ZIP 무결성 시험을 수행했다. 28개 사례는 작성자 직접 적용·도구 경계의 가상 대응·파일 정적 확인을 구분한다. 독립 검토·호스트 자동 선택·다른 환경의 실제 설치·글쓰기 효과를 검증한 결과는 아니다.
 

@@ -786,10 +786,10 @@
     "commit_or_edition": "",
     "observed": "MIT는 사용·복제·수정·배포 등의 허가와 저작권/허가 고지 유지 조건을 담는다.",
     "read_scope": "공식 라이선스 본문의 허가·고지·보증 제한, 2026-10-12",
-    "application": "구조·조건·근거를 목적에 맞게 비교한 조사 입력. 개별 규칙의 적용은 자체 설계 판단이다.",
-    "limits": "자체 패키지의 권장 후보이며 실제 사용자의 라이선스 선택은 미결이다.",
+    "application": "구현 후보 단계의 비교 이후, 실제 사용자 위임에 따라 자체 작성 자료의 MIT 배포를 선택하고 LICENSE와 패키지 고지를 반영했다.",
+    "limits": "후보 단계에서는 미결이었으나 v0.1.0에 MIT를 적용했다. 외부 원출처의 권리는 새 라이선스로 덮어쓰지 않는다.",
     "source_license_observed": "미확인; 원문 자산을 포함하지 않음",
-    "included_asset": "원문·코드·템플릿·PDF 제외; 링크·자체 요약만 포함"
+    "included_asset": "표준 MIT 허가 고지는 LICENSE에 포함; 그 밖의 원문 자산 제외"
   },
   {
     "title": "Apache License, Version 2.0",
@@ -802,5 +802,29 @@
     "limits": "대안의 구조 참고이며 법적 검토나 라이선스 확정은 수행하지 않았다.",
     "source_license_observed": "미확인; 원문 자산을 포함하지 않음",
     "included_asset": "원문·코드·템플릿·PDF 제외; 링크·자체 요약만 포함"
+  },
+  {
+    "title": "Setting repository visibility — GitHub Docs",
+    "url": "https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/managing-repository-settings/setting-repository-visibility",
+    "group": "공개·정식 릴리스 공식 근거",
+    "commit_or_edition": "조회일 2026-10-12의 공식 웹 안내",
+    "observed": "공개 전환 시 코드·이력과 Actions 이력/로그가 누구에게나 보일 수 있고 기존 저장소 기능에 영향이 있음을 설명한다.",
+    "read_scope": "전환 영향과 주의사항, 2026-10-12",
+    "application": "Git 이력·PR·CI 로그·작성자 메타데이터를 공개 범위에 포함해 실제 후보를 점검한다.",
+    "limits": "공식 안내 열람은 실제 설정 변경·민감정보 부재 확인의 증거가 아니다.",
+    "source_license_observed": "안내 원문의 재배포 조건 미확인; 원문 제외",
+    "included_asset": "링크·자체 요약만 포함"
+  },
+  {
+    "title": "Managing releases in a repository — GitHub Docs",
+    "url": "https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository",
+    "group": "공개·정식 릴리스 공식 근거",
+    "commit_or_edition": "조회일 2026-10-12의 공식 웹 안내",
+    "observed": "태그 기반 릴리스, 초안 작성, 파일 첨부와 게시 절차를 설명한다.",
+    "read_scope": "릴리스 생성·초안·파일 첨부·GitHub CLI 안내, 2026-10-12",
+    "application": "정확한 병합 판본에 태그를 연결하고 ZIP·체크섬·한국어 안내를 준비한 뒤 게시 결과를 익명 재조회한다.",
+    "limits": "릴리스 게시 자체는 독립적인 품질 평가나 설치된 호스트 자동 선택의 증거가 아니다.",
+    "source_license_observed": "안내 원문의 재배포 조건 미확인; 원문 제외",
+    "included_asset": "링크·자체 요약만 포함"
   }
 ]
