@@ -2,7 +2,7 @@
 
 ## 로컬로 사용하기
 
-`skills/korean-writing/` 전체 폴더를 사용한다. `SKILL.md`만 복사하면 참조와 UI 메타데이터가 빠진다. 이 저장소는 현재 비공개이므로 GitHub에서 받을 때 접근 권한이 필요하다. 아래 명령은 설치 예시이며 이번 작업에서 사용자 전역 환경에 실행하지 않았다.
+`skills/korean-writing/` 전체 폴더를 사용한다. `SKILL.md`만 복사하면 참조와 UI 메타데이터가 빠진다. [v0.1.0 릴리스](https://github.com/monancho/korean-writing-skill/releases/tag/v0.1.0)의 ZIP에는 스킬 폴더와 MIT 고지가 함께 들어 있다. 아래 명령은 프로젝트 설치 예시이며 사용자 전역 환경에는 실행하지 않았다.
 
 Codex에서 프로젝트 범위로 쓰려면 해당 프로젝트의 `.agents/skills/korean-writing/`에 폴더 전체를 복사한다. 목적지에 같은 이름의 스킬이 이미 있으면 원문과 버전을 비교한 뒤 병합·대체 여부를 판단한다.
 
@@ -14,6 +14,15 @@ $targetSkill = Join-Path $targetProject '.agents/skills/korean-writing'
 if (Test-Path -LiteralPath $targetSkill) { throw '같은 이름의 스킬이 이미 있습니다. 내용을 먼저 비교하세요.' }
 New-Item -ItemType Directory -Path (Split-Path -Parent $targetSkill) -Force | Out-Null
 Copy-Item -LiteralPath './skills/korean-writing' -Destination $targetSkill -Recurse
+Copy-Item -LiteralPath './LICENSE' -Destination (Join-Path $targetSkill 'LICENSE')
+```
+
+ZIP으로 받았다면 먼저 새 폴더에 압축을 풀고 `korean-writing/` 폴더 전체를 대상 프로젝트의 `.agents/skills/korean-writing/`로 복사한다. 이 폴더 안에는 LICENSE가 이미 포함돼 있다. `manifest.json`은 다운로드 파일의 무결성을 확인하는 메타데이터이며 스킬 지침 파일이 아니다. 기존 설치가 있으면 비교 후 갱신한다.
+
+다운로드 ZIP의 SHA256은 같은 릴리스의 `SHA256SUMS.txt`와 비교한다.
+
+```powershell
+Get-FileHash -LiteralPath './korean-writing-0.1.0.zip' -Algorithm SHA256
 ```
 
 공식 [로컬 스킬 탐색·호출 안내](https://learn.chatgpt.com/docs/build-skills)에 따르면 Codex는 프로젝트 `.agents/skills`와 사용자 스킬 위치를 탐색한다. 다른 Agent Skills 호스트에서는 해당 호스트의 등록 위치·호출 방식을 확인한다. 플러그인 마켓 등록·모든 호스트의 자동 선택은 검증하지 않았다.

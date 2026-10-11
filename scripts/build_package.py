@@ -1,4 +1,4 @@
-"""구성 확인을 마친 스킬만 재현 가능한 ZIP 후보로 만든다."""
+"""구성 확인을 마친 스킬과 LICENSE를 재현 가능한 릴리스 ZIP으로 만든다."""
 from __future__ import annotations
 
 import argparse
@@ -20,7 +20,8 @@ def build(root: Path, destination: Path) -> dict:
         if path.is_file():
             name = path.relative_to(root / "skills").as_posix()
             data[name] = path.read_bytes().replace(b"\r\n", b"\n")
-    manifest = {"candidate": "0.1.0", "license_status": "UNDECIDED", "files": {name: hashlib.sha256(content).hexdigest() for name, content in data.items()}}
+    data["korean-writing/LICENSE"] = (root / "LICENSE").read_bytes().replace(b"\r\n", b"\n")
+    manifest = {"name": "korean-writing", "version": "0.1.0", "license": "MIT", "release_channel": "stable", "files": {name: hashlib.sha256(content).hexdigest() for name, content in data.items()}}
     destination.parent.mkdir(parents=True, exist_ok=True)
     with ZipFile(destination, "w", ZIP_DEFLATED) as archive:
         for name, content in {**data, "manifest.json": (json.dumps(manifest, ensure_ascii=False, indent=2) + "\n").encode("utf-8")}.items():
@@ -33,7 +34,7 @@ def build(root: Path, destination: Path) -> dict:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--output", type=Path, default=Path("dist/korean-writing-0.1.0-candidate.zip"))
+    parser.add_argument("--output", type=Path, default=Path("dist/korean-writing-0.1.0.zip"))
     args = parser.parse_args()
     print(json.dumps(build(Path(__file__).resolve().parents[1], args.output), ensure_ascii=True))
 

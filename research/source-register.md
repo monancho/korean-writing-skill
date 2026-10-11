@@ -940,3 +940,35 @@
 
 원출처 라이선스의 기존 확인: 미확인; 원문 자산을 포함하지 않음 · 원문·코드·템플릿·PDF 제외; 링크·자체 요약만 포함
 
+
+## S68 — Setting repository visibility — GitHub Docs
+
+[원출처](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/managing-repository-settings/setting-repository-visibility) · 분류: 공개·정식 릴리스 공식 근거 · 판본: 조회일 2026-10-12의 공식 웹 안내
+
+관찰: 공개 전환 시 코드·이력과 Actions 이력/로그가 누구에게나 보일 수 있고 기존 저장소 기능에 영향이 있음을 설명한다.
+
+열람 범위: 전환 영향과 주의사항, 2026-10-12
+
+자체 적용: Git 이력·PR·CI 로그·작성자 메타데이터를 공개 범위에 포함해 실제 후보를 점검한다.
+
+한계: 공식 안내 열람은 실제 설정 변경·민감정보 부재 확인의 증거가 아니다.
+
+포함: 링크·자체 요약. 원문·코드 자산 제외.
+
+## S69 — Managing releases in a repository — GitHub Docs
+
+[원출처](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository) · 분류: 공개·정식 릴리스 공식 근거 · 판본: 조회일 2026-10-12의 공식 웹 안내
+
+관찰: 태그 기반 릴리스, 초안 작성, 파일 첨부와 게시 절차를 설명한다.
+
+열람 범위: 릴리스 생성·초안·파일 첨부·GitHub CLI 안내, 2026-10-12
+
+자체 적용: 정확한 병합 판본에 태그를 연결하고 ZIP·체크섬·한국어 안내를 준비한 뒤 게시 결과를 익명 재조회한다.
+
+한계: 릴리스 게시 자체는 독립적인 품질 평가나 설치된 호스트 자동 선택의 증거가 아니다.
+
+포함: 링크·자체 요약. 원문·코드 자산 제외.
+
+## S66 후속 결정 — v0.1.0 MIT 적용
+
+위 S66/67의 미결 문구는 후보 단계 이력이다. 실제 사용자 후속 위임으로 자체 작성 자료에 MIT를 선택하고 표준 고지를 LICENSE와 설치 ZIP에 반영했다. Apache-2.0은 대안으로만 비교했으며 적용하지 않았다. 외부 출처의 권리는 그대로 남는다.

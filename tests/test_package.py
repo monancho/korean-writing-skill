@@ -20,6 +20,7 @@ class PackageTests(unittest.TestCase):
         self.addCleanup(self.temp.cleanup)
         self.root = Path(self.temp.name) / "repo"
         shutil.copytree(ROOT / "skills", self.root / "skills")
+        shutil.copyfile(ROOT / "LICENSE", self.root / "LICENSE")
         self.entry = self.root / "skills/korean-writing/SKILL.md"
 
     def test_current_package(self):
@@ -50,11 +51,23 @@ class PackageTests(unittest.TestCase):
         self.entry.write_text(self.entry.read_text(encoding="utf-8") + "\n" + url + "\n", encoding="utf-8")
         self.assertTrue(any("내부 URL" in error for error in check(self.root)))
 
+    def test_missing_license_is_rejected(self):
+        (self.root / "LICENSE").unlink()
+        self.assertTrue(any("배포용 LICENSE" in error for error in check(self.root)))
+
+    def test_mismatched_license_metadata_is_rejected(self):
+        self.entry.write_text(self.entry.read_text(encoding="utf-8").replace("license: MIT", "license: other"), encoding="utf-8")
+        self.assertTrue(any("라이선스 표기" in error for error in check(self.root)))
+
     def test_reproducible_archive_has_exact_files_and_hashes(self):
         first, second = Path(self.temp.name) / "first.zip", Path(self.temp.name) / "second.zip"
         self.assertEqual(build(self.root, first)["sha256"], build(self.root, second)["sha256"])
         with ZipFile(first) as archive:
             manifest = json.loads(archive.read("manifest.json"))
+            self.assertEqual(manifest["version"], "0.1.0")
+            self.assertEqual(manifest["license"], "MIT")
+            self.assertEqual(manifest["release_channel"], "stable")
+            self.assertEqual(archive.read("korean-writing/LICENSE"), (ROOT / "LICENSE").read_bytes().replace(b"\r\n", b"\n"))
             self.assertEqual(set(archive.namelist()), set(manifest["files"]) | {"manifest.json"})
             for name, sha in manifest["files"].items():
                 self.assertFalse(Path(name).is_absolute())
