@@ -2,6 +2,24 @@
 
 기존 조사와 이번 구현에서 사용한 외부 출처의 링크·판본·읽은 범위·자체 적용·한계를 연결한다. 내부 운영 문서·Slack 원문·개인 경로·논문 PDF·타인 스킬·템플릿 전문은 포함하지 않는다. 조회·열람과 효과·표준 준수·정식 채택을 구분한다.
 
+## 주제별 찾기
+
+총 69개 출처의 기록이다. 관찰·열람 범위·자체 적용·한계는 아래 각 항목에 보존했다. 기계 판독 자료는 [sources.json](sources.json)에 있다.
+
+| 주제 | 출처 | 수 |
+|---|---|---|
+| [공개 작성 스킬·형식·인용 연구](#s01) | S01–S19 | 19 |
+| [개발 프로세스·협업 규격](#s20) | S20–S39 | 20 |
+| [문서·결정 템플릿](#s40) | S40–S43 | 4 |
+| [Confluence 블록 기능](#s44) | S44–S58 | 15 |
+| [의미 보존·한국어 지침](#s59) | S59–S62 | 4 |
+| [구현·설치·CI·라이선스 공식 근거](#s63) | S63–S67 | 5 |
+| [공개·정식 릴리스 공식 근거](#s68) | S68–S69 | 2 |
+
+S66/67의 라이선스 미결 문구는 후보 당시 기록이다. 자체 작성 자료에는 이후 MIT를 적용했다. [후속 결정](#mit-followup)과 [릴리스 인계](../docs/release-readiness.md)에서 실제 결과를 확인한다. 출처별 원문 열람·권리 확인 범위가 새로 확대된 것은 아니다.
+
+<a id="s01"></a>
+
 ## S01 — writing-shape — Matt Pocock skills
 
 [원출처](https://github.com/mattpocock/skills/blob/49dd158d1076134a641b33efb035946536778336/skills/in-progress/writing-shape/SKILL.md) · 분류: 공개 작성 스킬·형식·인용 연구 · 판본/커밋: 49dd158d1076134a641b33efb035946536778336
@@ -267,6 +285,8 @@
 한계: 94.88을 한국어 교정 정확도나 글쓰기 품질 개선율로 읽을 수 없다. 스킬이 인용한 v4의 일부 절과 표를 확인했으며 후속 v5 전체를 검토하지 않았다.
 
 원출처 라이선스의 기존 확인: 미확인; 원문 자산을 포함하지 않음 · 원문·코드·템플릿·PDF 제외; 링크·자체 요약만 포함
+
+<a id="s20"></a>
 
 ## S20 — Framework for Innovation
 
@@ -548,6 +568,8 @@
 
 원출처 라이선스의 기존 확인: 미확인; 원문 자산을 포함하지 않음 · 원문·코드·템플릿·PDF 제외; 링크·자체 요약만 포함
 
+<a id="s40"></a>
+
 ## S40 — Project plan template
 
 [원출처](https://www.atlassian.com/software/confluence/templates/project-plan) · 분류: 문서·결정 템플릿 · 판본/커밋: 고정 판본 미확인; 조회일의 웹 내용
@@ -603,6 +625,8 @@
 한계: 한계: 공식 양식의 구조·안내 확인이며 효과·성능·독립 검토·사용자 최종 수락의 증거가 아니다. 원문 링크만 확보했고 PDF·화면 자산을 추가하지 않았다. 게시/개정 날짜·최신 릴리스 동일성·공개 패키지의 복제 라이선스는 미확인이다. 작성: Codex, 2026-10-11 Asia/Seoul.
 
 원출처 라이선스의 기존 확인: 미확인; 원문 자산을 포함하지 않음 · 원문·코드·템플릿·PDF 제외; 링크·자체 요약만 포함
+
+<a id="s44"></a>
 
 ## S44 — Create and manage block templates
 
@@ -814,6 +838,8 @@
 
 원출처 라이선스의 기존 확인: 미확인; 원문 자산을 포함하지 않음 · 원문·코드·템플릿·PDF 제외; 링크·자체 요약만 포함
 
+<a id="s59"></a>
+
 ## S59 — Understanding Factuality in Abstractive Summarization with FRANK: A Benchmark for Factuality Metrics
 
 [원출처](https://aclanthology.org/2021.naacl-main.383/) · 분류: 의미 보존·한국어 지침 · 판본/커밋: 2021-06
@@ -869,6 +895,8 @@
 한계: 구조·근거 참고이며 구현 효과·표준 준수·실제 도입의 입증이 아니다.
 
 원출처 라이선스의 기존 확인: 미확인; 원문 자산을 포함하지 않음 · 원문·코드·템플릿·PDF 제외; 링크·자체 요약만 포함
+
+<a id="s63"></a>
 
 ## S63 — Build skills — ChatGPT Learn
 
@@ -941,6 +969,8 @@
 원출처 라이선스의 기존 확인: 미확인; 원문 자산을 포함하지 않음 · 원문·코드·템플릿·PDF 제외; 링크·자체 요약만 포함
 
 
+<a id="s68"></a>
+
 ## S68 — Setting repository visibility — GitHub Docs
 
 [원출처](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/managing-repository-settings/setting-repository-visibility) · 분류: 공개·정식 릴리스 공식 근거 · 판본: 조회일 2026-10-12의 공식 웹 안내
@@ -968,6 +998,8 @@
 한계: 릴리스 게시 자체는 독립적인 품질 평가나 설치된 호스트 자동 선택의 증거가 아니다.
 
 포함: 링크·자체 요약. 원문·코드 자산 제외.
+
+<a id="mit-followup"></a>
 
 ## S66 후속 결정 — v0.1.0 MIT 적용
 
