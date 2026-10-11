@@ -1,0 +1,5 @@
+interface:
+  display_name: "한국어 업무 작성"
+  short_description: "사실·조건·사용자 의도를 보존하는 한국어 글과 업무 문서·메시지 작성"
+  default_prompt: "$korean-writing으로 원뜻과 조건을 유지하며 이 업무 문구를 다듬어 주세요."
+
