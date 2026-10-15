@@ -18,7 +18,10 @@ def check(root: Path) -> list[str]:
     entry = skill / "SKILL.md"
     if not entry.is_file():
         return ["핵심 SKILL.md가 없습니다."]
-    reachable: set[Path] = {entry.resolve(), (skill / "agents/openai.yaml").resolve()}
+    metadata = skill / "agents/openai.yaml"
+    if not metadata.is_file():
+        errors.append("배포용 UI 메타데이터 agents/openai.yaml이 없습니다.")
+    reachable: set[Path] = {entry.resolve(), metadata.resolve()}
     for path in sorted(root.rglob("*")):
         if any(p in {".git", "dist", "__pycache__", ".venv"} for p in path.relative_to(root).parts):
             continue
@@ -48,6 +51,9 @@ def check(root: Path) -> list[str]:
             except ValueError:
                 errors.append(f"저장소 밖 참조: {path.relative_to(root)} → {value}")
                 continue
+            if path.is_relative_to(skill) and not target.is_relative_to(skill):
+                errors.append(f"스킬 배포 범위 밖 참조: {path.relative_to(root)} → {value}")
+                continue
             if not target.exists():
                 errors.append(f"없는 참조: {path.relative_to(root)} → {value}")
             if path == entry:
@@ -59,13 +65,15 @@ def check(root: Path) -> list[str]:
         text = entry.read_text(encoding="utf-8")
     except UnicodeError:
         return errors
-    if not text.startswith("---\n") or "\n---\n" not in text[4:]:
+    frontmatter_match = re.match(r"\A---\n(.*?)\n---(?:\n|\Z)", text, re.S)
+    frontmatter = frontmatter_match.group(1) if frontmatter_match else ""
+    if frontmatter_match is None:
         errors.append("YAML frontmatter 경계가 없습니다.")
-    if not re.search(r"(?m)^name: korean-writing$", text):
+    if not re.search(r"(?m)^name: korean-writing$", frontmatter):
         errors.append("스킬명과 폴더명이 일치하지 않습니다.")
-    if not re.search(r"(?m)^description: \S", text):
+    if not re.search(r"(?m)^description: \S", frontmatter):
         errors.append("호출 설명이 없습니다.")
-    if not re.search(r"(?m)^license: MIT$", text):
+    if not re.search(r"(?m)^license: MIT$", frontmatter):
         errors.append("릴리스 라이선스 표기가 MIT와 일치하지 않습니다.")
     license_file = root / "LICENSE"
     if not license_file.is_file():
