@@ -30,6 +30,35 @@ class PackageTests(unittest.TestCase):
         (self.root / "skills/korean-writing/references/messages.md").unlink()
         self.assertTrue(any("없는 참조" in error for error in check(self.root)))
 
+    def test_missing_ui_metadata_is_rejected(self):
+        (self.root / "skills/korean-writing/agents/openai.yaml").unlink()
+        self.assertTrue(any("UI 메타데이터" in error for error in check(self.root)))
+
+    def test_entry_reference_to_unshipped_repo_file_is_rejected(self):
+        (self.root / "README.md").write_text("저장소 전용 안내", encoding="utf-8")
+        self.entry.write_text(self.entry.read_text(encoding="utf-8") + "\n[안내](../../README.md)\n", encoding="utf-8")
+        self.assertTrue(any("스킬 배포 범위 밖" in error for error in check(self.root)))
+        with self.assertRaises(ValueError):
+            build(self.root, Path(self.temp.name) / "invalid.zip")
+
+    def test_nested_reference_to_unshipped_repo_file_is_rejected(self):
+        (self.root / "README.md").write_text("저장소 전용 안내", encoding="utf-8")
+        reference = self.root / "skills/korean-writing/references/messages.md"
+        reference.write_text(reference.read_text(encoding="utf-8") + "\n[안내](../../../README.md)\n", encoding="utf-8")
+        self.assertTrue(any("스킬 배포 범위 밖" in error for error in check(self.root)))
+
+    def test_body_cannot_supply_frontmatter_fields(self):
+        original = self.entry.read_text(encoding="utf-8")
+        for field, value, error_text in (
+            ("name", "korean-writing", "스킬명"),
+            ("description", original.split("description: ", 1)[1].splitlines()[0], "호출 설명"),
+            ("license", "MIT", "라이선스 표기"),
+        ):
+            with self.subTest(field=field):
+                damaged = original.replace(f"{field}: {value}\n", f"{field}: \n", 1)
+                self.entry.write_text(damaged + f"\n{field}: {value}\n", encoding="utf-8")
+                self.assertTrue(any(error_text in error for error in check(self.root)))
+
     def test_reference_escape_is_rejected(self):
         self.entry.write_text(self.entry.read_text(encoding="utf-8") + "\n[잘못된 자원](../../../../outside.md)\n", encoding="utf-8")
         self.assertTrue(any("저장소 밖" in error for error in check(self.root)))
